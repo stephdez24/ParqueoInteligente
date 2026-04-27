@@ -81,6 +81,46 @@ public:
         }
         return 0;
     }
+    
+    string getTipoEspacioLiberado(string placa) 
+    {
+        for (auto& e : espacios) 
+        {
+            if (e.placaActual == placa)
+                return e.tipoEspacio;
+        }
+        return "";
+    }
+
+    //no importa el espacio
+    int asignarEspacioA(Vehiculo& v) 
+    {
+        for (auto& e : espacios) 
+        {
+            if (!e.ocupado) 
+            {
+                e.ocupar(v.placa);
+                vehiculosActuales++;
+                return e.id;
+            }
+        }
+        return -1;
+    }
+
+    //tipo de espacio
+    int asignarEspacioB(Vehiculo& v) 
+    {
+        for (auto& e : espacios) 
+        {
+            if (!e.ocupado && e.aceptaVehiculo(v.tipo, v.preferencial)) 
+            {
+                e.ocupar(v.placa);
+                vehiculosActuales++;
+                return e.id;
+            }
+        }
+        return -1;
+    }
 
     void mostrarEstado() 
     {

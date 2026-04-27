@@ -69,8 +69,9 @@ public:
             cout << "Tiempo promedio de espera: " << sumaEspera / vehiculosEnEspera << endl;
             cout << "Tiempo maximo de espera: " << esperaMaxima << endl;
         }
-        else {
-            cout << "Tiempo promedio de espera: N/A (ningún vehiculo esperó)" << endl;
+        else 
+        {
+            cout << "Tiempo promedio de espera: N/A (ningun vehiculo espero)" << endl;
             cout << "Tiempo maximo de espera: N/A" << endl;
         }
 
@@ -78,8 +79,9 @@ public:
         if (idEspacioMasUsado != -1) {
             cout << "Espacio mas usado: #" << idEspacioMasUsado << " con " << maxUsos << " usos." << endl;
         }
-        else {
-            cout << "Espacio mas usado: N/A (ningún vehiculo ingresó)" << endl;
+        else 
+        {
+            cout << "Espacio mas usado: N/A (ningún vehiculo ingreso)" << endl;
         }
     }
 };

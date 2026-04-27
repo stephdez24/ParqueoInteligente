@@ -3,7 +3,8 @@
 #include <string>
 using namespace std;
 
-class Vehiculo {
+class Vehiculo 
+{
 public:
     string placa;
     string tipo;         //carro o moto
@@ -11,13 +12,15 @@ public:
     int tiempoEntrada;   // para calcular permanencia
 
     //Constructor vacío
-    Vehiculo() {
+    Vehiculo() 
+    {
         preferencial = false;
         tiempoEntrada = 0;
     }
 
     //Constructor con datos
-    Vehiculo(string p, string t, bool pref = false) {
+    Vehiculo(string p, string t, bool pref = false) 
+    {
         placa = p;
         tipo = t;
         preferencial = pref;

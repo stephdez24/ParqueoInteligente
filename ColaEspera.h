@@ -35,26 +35,63 @@ public:
         return cola.size();
     }
 
-    //Devuelve el siguiente vehículo en la cola y lo elimina de la cola
-    Vehiculo siguiente() 
-    {
-        if (!cola.empty()) 
-        {
-            //devuelve el primer vehículo
+    Vehiculo siguiente() {
+        if (!cola.empty()) {
             Vehiculo v = cola.front();
-            //quita ese vahículo de la cola
             cola.pop();
             return v;
         }
-        
         return Vehiculo("", "");
     }
 
-    bool existe(string placa) {
+    //busca el primer vehiculo compatible con el tipo de espacio
+    Vehiculo siguienteCompatible(string tipoEspacio) 
+    {
         queue<Vehiculo> copia = cola;
+        while (!copia.empty()) 
+        {
+            Vehiculo v = copia.front();
+            copia.pop();
 
-        while (!copia.empty()) {
-            if (copia.front().placa == placa) {
+            if (tipoEspacio == "normal" && v.tipo == "carro" && !v.preferencial)
+            {
+                return v;
+            }
+            if (tipoEspacio == "moto" && v.tipo == "moto")
+            {
+                return v;
+            }
+            if (tipoEspacio == "preferencial" && v.preferencial)
+            {
+                return v;
+            }
+        }
+        //no hay vehiculo compatible
+        return Vehiculo("", "");
+    }
+
+    //elimina un vehiculo específico por placa
+    void eliminarPorPlaca(string placa)
+    {
+        queue<Vehiculo> nueva;
+        while (!cola.empty())
+        {
+            if (cola.front().placa != placa)
+            {
+                nueva.push(cola.front());
+            }
+            cola.pop();
+        }
+        cola = nueva;
+    }
+
+    bool existe(string placa)
+    {
+        queue<Vehiculo> copia = cola;
+        while (!copia.empty())
+        {
+            if (copia.front().placa == placa)
+            {
                 return true;
             }
             copia.pop();
@@ -66,14 +103,17 @@ public:
     {
         if (cola.empty()) 
         {
-            cout << "La lista de espera esta vacía" << endl;
+            cout << "La lista de espera esta vacia\n";
             return;
         }
-
         queue<Vehiculo> copia = cola;
-        cout << "--- Lista de Espera ---" << endl;
-        while (!copia.empty()) {
-            cout << "Placa: " << copia.front().placa << " [" << copia.front().tipo << "]" << endl;
+        cout << "--- Lista de Espera ---\n";
+        while (!copia.empty()) 
+        {
+            cout << "Placa: " << copia.front().placa
+                << " [" << copia.front().tipo << "]"
+                << (copia.front().preferencial ? " [preferencial]" : "")
+                << "\n";
             copia.pop();
         }
     }
