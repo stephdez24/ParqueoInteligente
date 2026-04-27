@@ -99,6 +99,11 @@ public:
         return false;
     }
 
+    queue<Vehiculo> getCola()
+    {
+        return cola;  // retorna copia de la cola
+    }
+
     void mostrar() 
     {
         if (cola.empty()) 

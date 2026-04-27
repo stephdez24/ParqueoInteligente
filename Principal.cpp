@@ -335,9 +335,9 @@ int main()
             cola.mostrar();
 
         }
-        else if (opcion == 6) 
+        else if (opcion == 6)
         {
-            metricas.mostrarReporte();
+            metricas.mostrarReporte(cola.getCola(), tick);
 
         }
         else if (opcion != 0) {
@@ -347,6 +347,6 @@ int main()
     } while (opcion != 0);
 
     cout << "\n-.-.-.-.RESUMEN FINAL-.-.-.-.\n";
-    metricas.mostrarReporte();
+    metricas.mostrarReporte(cola.getCola(), tick);
     return 0;
 }
